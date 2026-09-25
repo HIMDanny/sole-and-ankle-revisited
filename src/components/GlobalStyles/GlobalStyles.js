@@ -13,6 +13,10 @@ const GlobalStyles = createGlobalStyle`
 
   --color-primary: hsl(340deg 65% 47%);
   --color-secondary: hsl(240deg 60% 63%);
+
+  --font-normal: 500;
+  --font-medium: 600;
+  --font-bold: 800;
 }
 
 

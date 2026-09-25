@@ -5,7 +5,6 @@ import UnstyledButton from '../UnstyledButton';
 import VisuallyHidden from '../VisuallyHidden';
 
 import * as Dialog from '@radix-ui/react-dialog';
-import { WEIGHTS } from '../../constants';
 
 const MobileMenu = () => {
   return (
@@ -141,7 +140,7 @@ const NavLink = styled.a`
   text-transform: uppercase;
   text-decoration: none;
   color: var(--color-gray-900);
-  font-weight: ${WEIGHTS.medium};
+  font-weight: var(--font-medium);
   font-size: ${18 / 16}rem;
 
   &[data-active] {

@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { WEIGHTS } from '../../constants';
-
 import Icon from '../Icon';
 
 const Select = ({ label, value, children, ...delegated }) => {
@@ -61,7 +59,7 @@ const DisplayedBit = styled.span`
   display: block;
   background: var(--color-gray-100);
   font-size: 1rem;
-  font-weight: ${WEIGHTS.medium};
+  font-weight: var(--font-medium);
   color: var(--color-gray-900);
   padding: 12px 42px 12px 16px;
   border-radius: 8px;

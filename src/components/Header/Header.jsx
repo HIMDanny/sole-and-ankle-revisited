@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { QUERIES, WEIGHTS } from '../../constants';
+import { QUERIES } from '../../constants';
 import Icon from '../Icon';
 import Logo from '../Logo';
 import MobileMenu from '../MobileMenu';
@@ -90,7 +90,7 @@ const NavLink = styled.a`
   text-transform: uppercase;
   text-decoration: none;
   color: var(--color-gray-900);
-  font-weight: ${WEIGHTS.medium};
+  font-weight: var(--font-medium);
   white-space: nowrap;
 
   &:first-of-type {
