@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { COLORS, QUERIES } from '../../constants';
+import { QUERIES } from '../../constants';
 
 import Icon from '../Icon';
 import SearchInput from '../SearchInput';
@@ -29,8 +29,8 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 24px;
   font-size: 0.875rem;
-  color: ${COLORS.gray[300]};
-  background-color: ${COLORS.gray[900]};
+  color: var(--color-gray-300);
+  background-color: var(--color-gray-900);
   height: 40px;
   padding-left: 32px;
   padding-right: 32px;
@@ -41,7 +41,7 @@ const Wrapper = styled.div`
 `;
 
 const MarketingMessage = styled.span`
-  color: ${COLORS.white};
+  color: var(--color-white);
   margin-right: auto;
 `;
 

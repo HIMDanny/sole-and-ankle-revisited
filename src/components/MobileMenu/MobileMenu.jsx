@@ -1,12 +1,11 @@
-import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import UnstyledButton from '../UnstyledButton';
 import Icon from '../Icon';
+import UnstyledButton from '../UnstyledButton';
 import VisuallyHidden from '../VisuallyHidden';
 
 import * as Dialog from '@radix-ui/react-dialog';
-import { COLORS, WEIGHTS } from '../../constants';
+import { WEIGHTS } from '../../constants';
 
 const MobileMenu = () => {
   return (
@@ -94,7 +93,7 @@ const slideOut = keyframes`
 const DialogOverlay = styled(Dialog.Overlay)`
   position: fixed;
   inset: 0;
-  background-color: hsl(from ${COLORS.gray[700]} h s l / 0.8);
+  background-color: hsl(var(--hsl-gray-700) / 0.8);
 
   &[data-state='open'] {
     animation: ${fadeIn} 200ms ease-out;
@@ -112,7 +111,7 @@ const DialogContent = styled(Dialog.Content)`
   top: 0;
   bottom: 0;
   right: 0;
-  background-color: ${COLORS.white};
+  background-color: var(--color-white);
   padding: 32px;
   width: 300px;
 
@@ -141,12 +140,12 @@ const Nav = styled.nav`
 const NavLink = styled.a`
   text-transform: uppercase;
   text-decoration: none;
-  color: ${COLORS.gray[900]};
+  color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
   font-size: ${18 / 16}rem;
 
   &[data-active] {
-    color: ${COLORS.secondary};
+    color: var(--color-secondary);
   }
 `;
 
@@ -159,6 +158,6 @@ const Footer = styled.footer`
 
 const FooterLink = styled.a`
   text-decoration: none;
-  color: ${COLORS.gray[700]};
+  color: var(--color-gray-700);
   font-size: ${14 / 16}rem;
 `;

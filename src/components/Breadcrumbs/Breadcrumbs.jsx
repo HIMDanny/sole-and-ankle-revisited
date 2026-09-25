@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { COLORS } from '../../constants';
 
 const Breadcrumbs = ({ children }) => {
   return <Wrapper>{children}</Wrapper>;
@@ -9,7 +8,10 @@ const Breadcrumbs = ({ children }) => {
 Breadcrumbs.Crumb = ({ href, children, delegated }) => {
   return (
     <CrumbWrapper>
-      <CrumbLink href={href} {...delegated}>
+      <CrumbLink
+        href={href}
+        {...delegated}
+      >
         {children}
       </CrumbLink>
     </CrumbWrapper>
@@ -23,17 +25,17 @@ const CrumbWrapper = styled.div`
     &::before {
       content: '/';
       margin-right: 8px;
-      color: ${COLORS.gray[300]};
+      color: var(--color-gray-300);
     }
   }
 `;
 
 const CrumbLink = styled.a`
-  color: ${COLORS.gray[700]};
+  color: var(--color-gray-700);
   text-decoration: none;
 
   &:hover {
-    color: ${COLORS.gray[900]};
+    color: var(--color-gray-900);
   }
 `;
 
