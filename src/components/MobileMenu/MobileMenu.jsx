@@ -1,33 +1,164 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import UnstyledButton from '../UnstyledButton';
 import Icon from '../Icon';
 import VisuallyHidden from '../VisuallyHidden';
 
-const MobileMenu = ({ isOpen, onDismiss }) => {
-  if (!isOpen) {
-    return null;
-  }
+import * as Dialog from '@radix-ui/react-dialog';
+import { COLORS, WEIGHTS } from '../../constants';
 
+const MobileMenu = () => {
   return (
-    <div>
-      <button onClick={onDismiss}>Dismiss menu</button>
-      <nav>
-        <a href="/sale">Sale</a>
-        <a href="/new">New&nbsp;Releases</a>
-        <a href="/men">Men</a>
-        <a href="/women">Women</a>
-        <a href="/kids">Kids</a>
-        <a href="/collections">Collections</a>
-      </nav>
-      <footer>
-        <a href="/terms">Terms and Conditions</a>
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/contact">Contact Us</a>
-      </footer>
-    </div>
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
+        <UnstyledButton>
+          <Icon id="menu" />
+          <VisuallyHidden>Menu</VisuallyHidden>
+        </UnstyledButton>
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <DialogOverlay />
+        <DialogContent aria-describedby="">
+          <Dialog.Close asChild>
+            <DismissButton>
+              <Icon id="close" />
+              <VisuallyHidden>Dismiss menu</VisuallyHidden>
+            </DismissButton>
+          </Dialog.Close>
+          <Dialog.Title>
+            <VisuallyHidden>Menu</VisuallyHidden>
+          </Dialog.Title>
+          <Nav>
+            <NavLink
+              href="/sale"
+              data-active
+            >
+              Sale
+            </NavLink>
+            <NavLink href="/new">New&nbsp;Releases</NavLink>
+            <NavLink href="/men">Men</NavLink>
+            <NavLink href="/women">Women</NavLink>
+            <NavLink href="/kids">Kids</NavLink>
+            <NavLink href="/collections">Collections</NavLink>
+          </Nav>
+          <Footer>
+            <FooterLink href="/terms">Terms and Conditions</FooterLink>
+            <FooterLink href="/privacy">Privacy Policy</FooterLink>
+            <FooterLink href="/contact">Contact Us</FooterLink>
+          </Footer>
+        </DialogContent>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 };
 
 export default MobileMenu;
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
+
+const slideIn = keyframes`
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
+
+const slideOut = keyframes`
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+`;
+
+const DialogOverlay = styled(Dialog.Overlay)`
+  position: fixed;
+  inset: 0;
+  background-color: hsl(from ${COLORS.gray[700]} h s l / 0.8);
+
+  &[data-state='open'] {
+    animation: ${fadeIn} 200ms ease-out;
+  }
+
+  &[data-state='closed'] {
+    animation: ${fadeOut} 200ms ease-out;
+  }
+`;
+
+const DialogContent = styled(Dialog.Content)`
+  position: fixed;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: ${COLORS.white};
+  padding: 32px;
+  width: 300px;
+
+  &[data-state='open'] {
+    animation: ${slideIn} 200ms ease-out;
+  }
+
+  &[data-state='closed'] {
+    animation: ${slideOut} 200ms ease-out;
+  }
+`;
+
+const DismissButton = styled(UnstyledButton)`
+  position: absolute;
+  top: 10px;
+  right: 0;
+  padding: 16px;
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+const NavLink = styled.a`
+  text-transform: uppercase;
+  text-decoration: none;
+  color: ${COLORS.gray[900]};
+  font-weight: ${WEIGHTS.medium};
+  font-size: ${18 / 16}rem;
+
+  &[data-active] {
+    color: ${COLORS.secondary};
+  }
+`;
+
+const Footer = styled.footer`
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  align-self: flex-end;
+`;
+
+const FooterLink = styled.a`
+  text-decoration: none;
+  color: ${COLORS.gray[700]};
+  font-size: ${14 / 16}rem;
+`;
